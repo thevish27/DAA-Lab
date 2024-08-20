@@ -1,0 +1,54 @@
+#include <iostream>
+using namespace std;
+
+// Function to find the index of the first occurrence of 0
+int firstZeroIndex(int arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == 0) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int main() {
+    int n;
+
+    cout << "Enter the size of the array: ";
+    cin >> n;
+
+    if (n <= 0) {
+        cout << "Array size must be positive." << endl;
+        return 1; // Exit with an error code
+    }
+
+    int* arr = new int[n]; // Dynamically allocate array
+
+    cout << "Enter the elements of the array (1s followed by 0s): ";
+    for (int i = 0; i < n; ++i) {
+        cin >> arr[i];
+    }
+
+    // Check if the array is valid
+    bool isValid = true;
+    for (int i = 0; i < n; ++i) {
+        if (arr[i] != 0 && arr[i] != 1) {
+            cout << "Array must contain only 1s and 0s." << endl;
+            isValid = false;
+            break;
+        }
+    }
+
+    if (isValid) {
+        int firstZeroIdx = firstZeroIndex(arr, n);
+        if (firstZeroIdx == -1) {
+            cout << "Count of zero is 0" << endl;
+        } else {
+            cout << "Count of zero is " << n - firstZeroIdx << endl;
+        }
+    }
+
+    delete[] arr; // Free the dynamically allocated memory
+
+    return 0;
+}
